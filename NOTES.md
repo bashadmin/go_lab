@@ -21,6 +21,8 @@ source ~/.bashrc
 After the installation has completed, login, and update the OS.
 
 ```
+sudo subscription-manager repos --enable codeready-builder-for-rhel-8-$(arch)-rpms
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo dnf install -y epel-release
 sudo dnf update -y
 sudo systemctl restart
