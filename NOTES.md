@@ -170,3 +170,62 @@ Now you can create the ignition-configs:
 openshift-install create ignition-configs --dir=install_dir/
 ```
 Note: If you reuse the install_dir, make sure it is empty. Hidden files are created after generating the configs, and they should be removed before you use the same folder on a 2nd attempt.
+
+Create okd4 directory in /var/www/html:
+```
+sudo mkdir /var/www/html/okd4
+```
+Copy the install_dir contents to /var/www/html/okd4 and set permissions:
+```
+sudo cp -R install_dir/* /var/www/html/okd4/
+sudo chown -R apache: /var/www/html/
+sudo chmod -R 755 /var/www/html/
+```
+Test the webserver:
+```
+curl localhost:8080/okd4/metadata.json
+```
+Download the [Fedora CoreOS](https://getfedora.org/coreos/download/) bare-metal bios image and sig files and shorten the file names:
+```
+cd /var/www/html/okd4/
+sudo wget https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/37.20221106.3.0/x86_64/fedora-coreos-37.20221106.3.0-metal.x86_64.raw.xz
+sudo wget https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/37.20221106.3.0/x86_64/fedora-coreos-37.20221106.3.0-metal.x86_64.raw.xz.sig
+sudo mv fedora-coreos-37.20221106.3.0-metal.x86_64.raw.xz fcos.raw.xz
+sudo mv fedora-coreos-37.20221106.3.0-metal.x86_64.raw.xz.sig fcos.raw.xz.sig
+sudo chown -R apache: /var/www/html/
+sudo chmod -R 755 /var/www/html/
+```
+
+## Starting the bootstrap node:
+Power on the odk4-bootstrap VM. Press the TAB key to edit the kernel boot options and add the following:
+```
+coreos.inst.install_dev=/dev/sda coreos.inst.image_url=http://192.168.100.210:8080/okd4/fcos.raw.xz coreos.inst.ignition_url=http://192.168.100.210:8080/okd4/bootstrap.ign
+```
+
+## Starting the control plane nodes:
+Power on the control-plane nodes and press the TAB key to edit the kernel boot options and add the following, then press enter:
+```
+coreos.inst.install_dev=/dev/sda coreos.inst.image_url=http://192.168.1.210:8080/okd4/fcos.raw.xz coreos.inst.ignition_url=http://192.168.1.210:8080/okd4/master.ign
+```
+
+## Starting the compute nodes:
+Power on the control-plane nodes and press the TAB key to edit the kernel boot options and add the following, then press enter:
+```
+coreos.inst.install_dev=/dev/sda coreos.inst.image_url=http://192.168.1.210:8080/okd4/fcos.raw.xz coreos.inst.ignition_url=http://192.168.1.210:8080/okd4/worker.ign
+```
+
+## Monitor the bootstrap installation:
+You can monitor the bootstrap process from the okd4-services node:
+```
+openshift-install --dir=install_dir/ wait-for bootstrap-complete --log-level=info
+```
+or
+```
+openshift-install --dir=install_dir/ wait-for bootstrap-complete --log-level=debug
+```
+
+Once the bootstrap process is complete, which can take upwards of 30 minutes, you can shutdown your bootstrap node. Now is a good time to edit the /etc/haproxy/haproxy.cfg, comment out the bootstrap node, and reload the haproxy service.
+```
+sudo sed '/ okd4-bootstrap /s/^/#/' /etc/haproxy/haproxy.cfg
+sudo systemctl reload haproxy
+```
