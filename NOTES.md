@@ -41,14 +41,16 @@ Open a terminal on the okd4-services VM and clone the okd4_files repo that conta
 cd
 git clone https://github.com/cragr/okd4_files.git
 cd okd4_files
+```
 Install bind (DNS)
+```
 sudo dnf -y install bind bind-utils
 ```
 Copy the named config files and zones:
 ```
 sudo cp named.conf /etc/named.conf
+sudo mkdir -p /etc/named/zones
 sudo cp named.conf.local /etc/named/
-sudo mkdir /etc/named/zones
 sudo cp db* /etc/named/zones
 ```
 Create firewall rules:
@@ -65,7 +67,7 @@ sudo systemctl restart NetworkManager
 Test DNS on the okd4-services.
 ```
 dig okd.local
-dig –x 192.168.1.210
+dig -x 192.168.100.210
 ```
 
 Install HAProxy:
@@ -92,7 +94,9 @@ sudo firewall-cmd --permanent --add-service=https
 sudo firewall-cmd --reload
 ```
 Install Apache/HTTPD
+```
 sudo dnf install -y httpd
+```
 Change httpd to listen port to 8080:
 ```
 sudo sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf
@@ -137,6 +141,11 @@ sudo mv kubectl oc openshift-install /usr/local/bin/
 oc version
 openshift-install version
 ```
+
+
+https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/37.20221106.3.0/x86_64/fedora-coreos-37.20221106.3.0-metal.x86_64.raw.xz
+
+
 The latest and recent releases are available at https://quay.io/openshift-release-dev/ocp-release
 
 https://amd64.origin.releases.ci.openshift.org/
@@ -165,8 +174,15 @@ openshift-install create manifests --dir=install_dir/
 ```
 Modify the cluster-scheduler-02-config.yaml manifest file to prevent Pods from being scheduled on the control plane machines:
 ```
-sed -i 's/mastersSchedulable: true/mastersSchedulable: False/' install_dir/manifests/cluster-scheduler-02-config.yml
+sed -i 's/mastersSchedulable: true/mastersSchedulable: false/' install_dir/manifests/cluster-scheduler-02-config.yml
 ```
+
+```
+sudo cp -R install_dir/* /var/www/html/okd4/
+sudo chown -R apache: /var/www/html/
+sudo chmod -R 755 /var/www/html/
+```
+
 Now you can create the ignition-configs:
 ```
 openshift-install create ignition-configs --dir=install_dir/
