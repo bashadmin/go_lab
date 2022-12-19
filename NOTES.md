@@ -216,7 +216,7 @@ sudo chmod -R 755 /var/www/html/
 ## Starting the bootstrap node:
 Power on the odk4-bootstrap VM. Press the TAB key to edit the kernel boot options and add the following:
 ```
-coreos.inst.install_dev=/dev/sda coreos.inst.image_url=http://192.168.100.210:8080/okd4/fcos.raw.xz coreos.inst.ignition_url=http://192.168.100.210:8080/okd4/bootstrap.ign
+coreos.inst.install_dev=/dev/sda coreos.inst.image_url=http://192.168.1.210:8080/okd4/fcos.raw.xz coreos.inst.ignition_url=http://192.168.1.210:8080/okd4/bootstrap.ign
 ```
 
 ## Starting the control plane nodes:
