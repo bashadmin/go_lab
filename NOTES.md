@@ -28,7 +28,7 @@ sudo dnf update -y
 ```
 Setup XRDP for Remote Access from Home Network
 ```
-sudo dnf install -y xrdp tigervnc-server
+sudo dnf install xrdp tigervnc-server -y
 sudo systemctl enable --now xrdp
 sudo firewall-cmd --zone=public --permanent --add-port=3389/tcp
 sudo firewall-cmd --reload
@@ -43,7 +43,7 @@ cd okd4_files
 ```
 Install bind (DNS)
 ```
-sudo dnf -y install bind bind-utils
+sudo dnf install bind bind-utils -y
 ```
 Copy the named config files and zones:
 ```
