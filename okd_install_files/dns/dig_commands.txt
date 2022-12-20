@@ -1,0 +1,17 @@
+dig okd.example.com
+dig +noall +answer @192.168.222.1 api.okd.example.com
+dig +noall +answer @192.168.222.1 api-int.okd.example.com
+dig +noall +answer @192.168.222.1 random.apps.okd.example.com
+dig +noall +answer @192.168.222.1 console-openshift-console.apps.okd.example.com
+dig +noall +answer @192.168.222.1 bootstrap.okd.example.com
+dig +noall +answer @192.168.222.1 master0.okd.example.com
+dig +noall +answer @192.168.222.1 master1.okd.example.com
+dig +noall +answer @192.168.222.1 master2.okd.example.com
+ping services.okd.example.com
+ping api.apps.okd.example.com
+ping api-int.okd.example.com
+ping test.apps.okd.example.com
+ping master0.okd.example.com
+ping master1.okd.example.com
+ping master2.okd.example.com
+ping google.com
