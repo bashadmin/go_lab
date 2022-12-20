@@ -1,5 +1,5 @@
 apiVersion: v1
-baseDomain: okd.local
+baseDomain: okd4.local
 metadata:
   name: okd # cluster name
 controlPlane:
@@ -20,4 +20,4 @@ networking:
 platform:
   none: {}
 pullSecret: '{"auths":{"fake":{"auth":"aWQ6cGFzcwo="}}}'
-sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDSr8fP4Gxv69FKtQgujviypfeacyWdEUPiuvTAX9o5skyAV7I5uQJUAMUQjCVx4Le9u/ac+oHqpaxdL2yvKeutoOT8T+pjKp4Ip+ekTdZsFwFEbd5x+31jra+3Hp9HKuNpH1bZteL+oR5DV2FUc++Evaik+n5sOng2OYk4wAQSbqLRB6j7iBdoT4g1x27y5ITDjdZV26uLDoF/UT3xywQ8LpAO+kbUy1BH2cqAUg020Yd9axV99IHcUVGdKW/YphEWIrJqItn2UKzq+FSyO1TRLz9DS3fYBZpG8tsVttEPyhx+JPvGOknoq2GFtPnyCu7S6/RwLPUnSayzkt0yMnAZex+XBI9l583Dz9yk8w4xtNCwprXmwcZZEVlsB9qwiw4hrY7VXbTjy8ykKCejVF1iil/hQOEe0DjYHozYEcMv0Ec9kGH84P52KMHQF2aeouMRlSoIYiRRuSnBzptjFeXlOarOf0IQGwYGpcxvjvv07znmICrltg1GSSQwCX/yfDU= admin@services.okd.example.com'
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDadexClK8TQ3Z5sU0ZVY+F/mrrWz//zOvwtXTOEs4X8mDQAIdBRaun+u1+abfJgqzD58ZIdEs2zbAmdzGtEPTJJSRrGXmvFqpfmbsetPClUe/QJ0KxLRHyPnYOgIFxo3S4lqZW71/K7eAKoeMyOpKZ7+6yRsFyzyrPpt4ue7uDFMOCVC1yDrQRRKktP4tf2wnhBSn0xP1YKbShkNPJ7/MbHpjb8Bpoo7oPje4wCBn/IZccuXVoTB7CkNckc/8OcGrgu1eW8wd9YvkuxJ6CJacxxA28p2HIotU7I0B6fjKz+hhTavngpYzDyEucVS21sMvyqupZ5aI4aBehUvfZl+pbF60wMUFT1DwKhBJC3CmaGs8LSR3Dgo23511odqJ4GkMks6VK3CdBP0i+OMlQzwnHKjhKTe/em/bLuY6jhjAnm1zdBIT51/q3ueAm1DW67nIxIQTQYVPXvOhXvFriO/UfYGD1mZd3j8L/fU5toUKtIFjcSThV/LAKNskPyP0E2h0= sysadmin@okd4-svc.okd.okd4.local'
