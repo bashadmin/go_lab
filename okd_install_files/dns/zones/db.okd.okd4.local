@@ -23,4 +23,8 @@ okd4-control-plane-1.okd.okd4.local.	IN	A	192.168.1.201
 okd4-control-plane-2.okd.okd4.local.	IN	A	192.168.1.202
 okd4-control-plane-3.okd.okd4.local.	IN	A	192.168.1.203
 ;
+<<<<<<< HEAD
 ;EOF
+=======
+;EOF
+>>>>>>> 4568f1f834bb9b470ec5b3b05507a6ed345e550e
