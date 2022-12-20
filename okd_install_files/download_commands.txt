@@ -1,3 +1,6 @@
 cd 
 wget https://github.com/okd-project/okd/releases/download/4.11.0-0.okd-2022-12-02-145640/openshift-client-linux-4.11.0-0.okd-2022-12-02-145640.tar.gz -O openshift-client.tar.gz
 wget https://github.com/okd-project/okd/releases/download/4.11.0-0.okd-2022-12-02-145640/openshift-install-linux-4.11.0-0.okd-2022-12-02-145640.tar.gz -O openshift-install.tar.gz
+
+sudo wget https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/36.20220716.3.1/x86_64/fedora-coreos-36.20220716.3.1-metal.x86_64.raw.xz -O /var/www/html/okd4/fcos.raw.xz
+sudo wget https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/36.20220716.3.1/x86_64/fedora-coreos-36.20220716.3.1-metal.x86_64.raw.xz.sig -O /var/www/html/okd4/fcos.raw.xz.sig
