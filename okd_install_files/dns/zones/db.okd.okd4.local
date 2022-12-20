@@ -1,0 +1,26 @@
+$TTL 1W
+@	IN	SOA	ns1.okd.okd4.local.	root (
+			2019070700	; serial
+			3H		; refresh (3 hours)
+			30M		; retry (30 minutes)
+			2W		; expiry (2 weeks)
+			1W		; minimum (1 week)
+)
+	IN	NS	ns1.okd.okd4.local.
+;
+ns1.okd.okd4.local.	IN	A	192.168.1.210
+;
+okd4-svc.okd.okd4.local.	IN	A	192.168.1.210
+;
+api.okd.okd4.local.		IN	A	192.168.1.210
+api-int.okd.okd4.local.	IN	A	192.168.1.210
+;
+*.apps.okd.okd4.local.		IN	A	192.168.1.210
+;
+okd4-bootstrap.okd.okd4.local.	IN	A	192.168.1.200
+;
+okd4-control-plane-1.okd.okd4.local.	IN	A	192.168.1.201
+okd4-control-plane-2.okd.okd4.local.	IN	A	192.168.1.202
+okd4-control-plane-3.okd.okd4.local.	IN	A	192.168.1.203
+;
+;EOF
