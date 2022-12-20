@@ -1,0 +1,23 @@
+apiVersion: v1
+baseDomain: okd.local
+metadata:
+  name: okd # cluster name
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+compute:
+  - hyperthreading: Enabled
+    name: worker
+    replicas: 0 # Must be set to 0 for User Provisioned Installation as worker nodes will be manually deployed.
+networking:
+  clusterNetwork:
+    - cidr: 10.128.0.0/14
+      hostPrefix: 23
+  networkType: OVNKubernetes
+  serviceNetwork:
+    - 172.30.0.0/16
+platform:
+  none: {}
+pullSecret: '{"auths":{"fake":{"auth":"aWQ6cGFzcwo="}}}'
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDSr8fP4Gxv69FKtQgujviypfeacyWdEUPiuvTAX9o5skyAV7I5uQJUAMUQjCVx4Le9u/ac+oHqpaxdL2yvKeutoOT8T+pjKp4Ip+ekTdZsFwFEbd5x+31jra+3Hp9HKuNpH1bZteL+oR5DV2FUc++Evaik+n5sOng2OYk4wAQSbqLRB6j7iBdoT4g1x27y5ITDjdZV26uLDoF/UT3xywQ8LpAO+kbUy1BH2cqAUg020Yd9axV99IHcUVGdKW/YphEWIrJqItn2UKzq+FSyO1TRLz9DS3fYBZpG8tsVttEPyhx+JPvGOknoq2GFtPnyCu7S6/RwLPUnSayzkt0yMnAZex+XBI9l583Dz9yk8w4xtNCwprXmwcZZEVlsB9qwiw4hrY7VXbTjy8ykKCejVF1iil/hQOEe0DjYHozYEcMv0Ec9kGH84P52KMHQF2aeouMRlSoIYiRRuSnBzptjFeXlOarOf0IQGwYGpcxvjvv07znmICrltg1GSSQwCX/yfDU= admin@services.okd.example.com'
