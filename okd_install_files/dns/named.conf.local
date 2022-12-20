@@ -6,4 +6,8 @@ zone "okd.okd4.local" {
 zone "1.168.192.in-addr.arpa" {
     type master;
     file "/etc/named/zones/db.192.168.1";  # 192.168.1.0/24 subnet
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 4568f1f834bb9b470ec5b3b05507a6ed345e550e
