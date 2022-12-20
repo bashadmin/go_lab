@@ -1,0 +1,10 @@
+sudo firewall-cmd --add-port=6443/tcp --zone=internal --permanent # api-server-6443
+sudo firewall-cmd --add-port=6443/tcp --zone=external --permanent # api-server-6443
+sudo firewall-cmd --add-port=22623/tcp --zone=internal --permanent # machine-config-server-22623
+sudo firewall-cmd --add-service=http --zone=internal --permanent # ingress-router-80
+sudo firewall-cmd --add-service=http --zone=external --permanent # ingress-router-80
+sudo firewall-cmd --add-service=https --zone=internal --permanent # ingress-router-443 
+sudo firewall-cmd --add-service=https --zone=external --permanent # ingress-router-443 
+sudo firewall-cmd --add-port=1936/tcp --zone=external --permanent # HAProxy Stats
+sudo firewall-cmd --add-port=1936/tcp --zone=internal --permanent # HAProxy Stats
+sudo firewall-cmd --reload
